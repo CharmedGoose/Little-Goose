@@ -31,7 +31,7 @@ class CustomHelpCommand(commands.HelpCommand):
         embed = discord.Embed(title=group.name,
                               colour=discord.Color.random())
         for index, command in enumerate(group.commands()):
-            embed.add_field(name=name=command.name,
+            embed.add_field(name=command.name,
                             value=command.brief)
         await self.get_destination().send(embed=embed)
 
