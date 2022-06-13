@@ -1,7 +1,10 @@
 import discord
 import os
 from discord.ext import commands, tasks
+from dotenv import load_dotenv
 import random
+
+load_dotenv()
 
 intents = discord.Intents(messages=True, guilds=True,
                           reactions=True, members=True, presences=True)
@@ -65,5 +68,4 @@ for filename in os.listdir("./cogs"):
         print(f"Loaded {filename}")
 
 
-client.run(
-    'OTg0NDU5MzExNTg3NjU1Njkw.Gi5XJw.GVPEXpEhwN7BUZEMNVLamMsBVudnQxd87SInr0')
+client.run(os.getenv("TOKEN"))
