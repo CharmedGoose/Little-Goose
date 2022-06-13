@@ -21,7 +21,7 @@ class CustomHelpCommand(commands.HelpCommand):
     async def send_cog_help(self, cog):
         embed = discord.Embed(title=cog.qualified_name,
                               colour=discord.Color.random())
-        for command in cogs.get_commands():
+        for command in cog.get_commands():
             embed.add_field(command.name,
                             command.brief)
         await self.get_destination().send(embed=embed)
@@ -36,7 +36,7 @@ class CustomHelpCommand(commands.HelpCommand):
 
     async def send_command_help(self, command):
         embed = discord.Embed(title=command.name,
-                              description=f"**{command.name}**\n{command.description}"
+                              description=f"**{command.name}**\n{command.description}",
                               colour=discord.Color.random())
         await self.get_destination().send(embed=embed)
 
