@@ -15,8 +15,7 @@ class CustomHelpCommand(commands.HelpCommand):
         embed = discord.Embed(title="Help", colour=discord.Color.random())
         for cog in mapping:
             embed.add_field(cog.qualified_name,
-                            f"{[command.name for command in mapping[cog]} {[command.brief for command in mapping[cog]]}"
-                            )
+                            f"{[command.name for command in mapping[cog]]} {[command.brief for command in mapping[cog]]}")
         await self.get_destination().send(embed=embed)
 
     async def send_cog_help(self, cog):
