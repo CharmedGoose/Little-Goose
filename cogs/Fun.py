@@ -8,7 +8,9 @@ class Fun(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(name="8ball")
+    @commands.command(name="8ball",
+                      brief="Use The 8Ball",
+                      description="Use The 8ball. It will decide for you.")
     async def _8ball(self, ctx, *args):
         if len(args) == 0:
             await ctx.send("Say Something")
@@ -37,14 +39,16 @@ class Fun(commands.Cog):
             ]
         await ctx.send(f'{random.choice(responses)}')
 
-    @commands.command()
+    @commands.command(brief="Chooses one of the choices",
+                      description="Chooses one of the choices")
     async def choose(self, ctx, *args):
         if len(args) < 2:
-            await ctx.send("Give Two Choices")
+            await ctx.send("Give At Least Two Choices")
             return
         await ctx.send(f"{random.choice(args)}")
 
-    @commands.command()
+    @commands.command(brief="Make Little Goose Say Something",
+                      description="Make Little Goose Say Something")
     async def say(self, ctx, *, args):
         await ctx.send(f"{args}")
 
