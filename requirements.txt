@@ -62,7 +62,7 @@ pycups==2.0.1
 pydocstyle==6.1.1
 pyflakes==2.2.0
 PyGObject==3.42.0
-PyJWT==2.3.0
+PyJWT==2.4.0
 pylint==2.14.1
 pymacaroons==0.13.0
 PyNaCl==1.5.0
