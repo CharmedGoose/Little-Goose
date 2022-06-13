@@ -14,24 +14,25 @@ class CustomHelpCommand(commands.HelpCommand):
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title="Help", colour=discord.Color.random())
         for cog in mapping:
-            embed.add_field(cog.qualified_name,
-                            f"{[command.name for command in mapping[cog]]} {[command.brief for command in mapping[cog]]}")
+            embed.add_field(name=cog.qualified_name,
+                            value=f"{[command.name for command in mapping[cog]]} {[command.brief for command in mapping[cog]]}"
+                            )
         await self.get_destination().send(embed=embed)
 
     async def send_cog_help(self, cog):
         embed = discord.Embed(title=cog.qualified_name,
                               colour=discord.Color.random())
         for command in cog.get_commands():
-            embed.add_field(command.name,
-                            command.brief)
+            embed.add_field(name=command.name,
+                            value=command.brief)
         await self.get_destination().send(embed=embed)
 
     async def send_group_help(self, group):
         embed = discord.Embed(title=group.name,
                               colour=discord.Color.random())
         for index, command in enumerate(group.commands()):
-            embed.add_field(command.name,
-                            command.brief)
+            embed.add_field(name=name=command.name,
+                            value=command.brief)
         await self.get_destination().send(embed=embed)
 
     async def send_command_help(self, command):
