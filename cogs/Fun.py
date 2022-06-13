@@ -39,7 +39,7 @@ class Fun(commands.Cog):
             ]
         await ctx.send(f'{random.choice(responses)}')
 
-    @commands.command(brief="Chooses one of the choices",
+    @commands.command(brief="Chooses One Of The Choices",
                       description="Chooses one of the choices")
     async def choose(self, ctx, *args):
         if len(args) < 2:
