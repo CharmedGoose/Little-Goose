@@ -20,7 +20,7 @@ class Actions(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(brief="Punch Someone", description="Punch Someone")
-    async def punch(self, ctx):
+    async def punch(self, ctx, args):
         user = self.client.get_user(ctx.message.mentions[0].id)
         embed = discord.Embed(
             title=f"{ctx.author.display_name} Punches {user.display_name} ✊💢",
@@ -31,7 +31,7 @@ class Actions(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(brief="Kick Someone", description="Kick Someone")
-    async def kick(self, ctx):
+    async def kick(self, ctx, args):
         user = self.client.get_user(ctx.message.mentions[0].id)
         embed = discord.Embed(
             title=f"{ctx.author.display_name} Kicks {user.display_name} 🦵💢",

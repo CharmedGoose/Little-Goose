@@ -13,9 +13,11 @@ class CustomHelpCommand(commands.HelpCommand):
 
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title="Help", colour=discord.Color.random())
-        for cog in mapping.items():
+        for cog, command in mapping.items():
+            filtered = await self.filter_commands(command, sort=True)
+            command_signatures = [self.get_command_signature(c) for c in filtered]
             embed.add_field(name=getattr(cog, "qualified_name", "No Category"),
-                            value=f"{[command.name for command in mapping[cog]]} {[command.brief for command in mapping[cog]]}"
+                            value=("\n".join(command_signatures))
                             )
         await self.get_destination().send(embed=embed)
 
