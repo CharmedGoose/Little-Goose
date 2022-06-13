@@ -41,8 +41,8 @@ class General(commands.Cog):
     async def ping(self, ctx):
         await ctx.send(f"Pong! {round(self.client.latency * 1000)}ms")
 
-    @commands.command(brief="Snipes The Last Message",
-                      description="Snipes The Last Message")
+    @commands.command(brief="Snipes The Last Deleted Message",
+                      description="Snipes The Last Deleted Message")
     async def snipe(self, message):
         if snipe_message_content is None:
             await message.channel.send("Theres nothing to snipe.")
