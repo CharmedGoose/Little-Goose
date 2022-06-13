@@ -6,10 +6,48 @@ import random
 
 load_dotenv()
 
+
+class CustomHelpCommand(commands.HelpCommand):
+    def __init__(self):
+        super().__init__()
+
+    async def send_bot_help(self, mapping):
+        embed = discord.Embed(title="Help", colour=discord.Color.random())
+        for cog in mapping:
+            embed.add_field(cog.qualified_name,
+                            f"{[command.name for command in mapping[cog]} {[command.brief for command in mapping[cog]]}"
+                            )
+        await self.get_destination().send(embed=embed)
+
+    async def send_cog_help(self, cog):
+        embed = discord.Embed(title=cog.qualified_name,
+                              colour=discord.Color.random())
+        for command in cogs.get_commands():
+            embed.add_field(command.name,
+                            command.brief)
+        await self.get_destination().send(embed=embed)
+
+    async def send_group_help(self, group):
+        embed = discord.Embed(title=group.name,
+                              colour=discord.Color.random())
+        for index, command in enumerate(group.commands()):
+            embed.add_field(command.name,
+                            command.brief)
+        await self.get_destination().send(embed=embed)
+
+    async def send_command_help(self, command):
+        embed = discord.Embed(title=command.name,
+                              description=f"**{command.name}**\n{command.description}"
+                              colour=discord.Color.random())
+        await self.get_destination().send(embed=embed)
+
+
 intents = discord.Intents(messages=True, guilds=True,
                           reactions=True, members=True, presences=True)
 
-client = commands.Bot(command_prefix='g!', intents=discord.Intents.all())
+client = commands.Bot(command_prefix='g!',
+                      intents=discord.Intents.all(),
+                      help_command=CustomHelpCommand())
 
 starter = ["Did Anyone See The New Never Gonna Give You Up Animated Video?",
            "Did You Know Rick Astley Made Other Good Songs Like Keep Singing?",
