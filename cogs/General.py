@@ -20,6 +20,12 @@ class General(commands.Cog):
         print("Little Goose Successfully Logged In!")
 
     @commands.Cog.listener()
+    async def on_member_join(self, member):
+        channel = await self.client.get_channel("973909111471235082")
+        channel.send(f'Welcome <@{member.id}>')
+        channel.send('<@465097356874874881> Do Your Thing')
+
+    @commands.Cog.listener()
     async def on_message_delete(self, message):
 
         global snipe_message_content

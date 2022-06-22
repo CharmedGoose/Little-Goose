@@ -39,7 +39,7 @@ class CustomHelpCommand(commands.HelpCommand):
 
     async def send_command_help(self, command):
         embed = discord.Embed(title=command.name,
-                              description=f"**{command.name}**\n{command.description}",
+                              description=f"{command.description}",
                               colour=discord.Color.random())
         await self.get_destination().send(embed=embed)
 
