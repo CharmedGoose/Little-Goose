@@ -21,8 +21,8 @@ class General(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        channel = await self.client.get_channel("973909111471235082")
-        channel.send(f'Welcome <@{member.id}>')
+        channel = await self.client.fetch_channel("973909111471235082")
+        await channel.send(f'Welcome <@{member.id}>')
         channel.send('<@465097356874874881> Do Your Thing')
 
     @commands.Cog.listener()
