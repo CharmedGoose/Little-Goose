@@ -68,7 +68,7 @@ async def spam_poop():
 async def on_message(message):
     if ("<@465097356874874881>" in message.content):
         await message.channel.send(
-            "Cherish things till they last.")
+            "😔")
     if ("<@851537359588818944>" in message.content
             or "<@984459311587655690>" in message.content):
         await message.channel.send("Don't hurt goose")
