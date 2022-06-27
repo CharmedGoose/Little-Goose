@@ -22,8 +22,9 @@ class General(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         channel = await self.client.fetch_channel("973909111471235082")
-        await channel.send(f'Welcome <@{member.id}>')
-        await channel.send('<@465097356874874881> Do Your Thing')
+        await channel.send("Since <@465097356874874881> Won't Do It I Will")
+        await asyncio.sleep(10)
+        await channel.send(f'Welcome <@{member.id}>\n Take <#973911546226962463>')
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
