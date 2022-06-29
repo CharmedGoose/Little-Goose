@@ -62,6 +62,9 @@ async def spam_poop():
     channel = client.get_channel(973935616846880819)
     await channel.send("*poop*")
     await channel.send("*eats poop*")
+    channel = client.get_channel(989611026603474965)
+    await channel.send("*poop*")
+    await channel.send("*eats poop*")
 
 
 @client.event
