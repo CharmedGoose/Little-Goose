@@ -57,7 +57,7 @@ starter = ["Did Anyone See The New Never Gonna Give You Up Animated Video?",
            ]
 
 
-@tasks.loop(hours=1)
+@tasks.loop(seconds=5)
 async def spam_poop():
     channel = client.get_channel(973935616846880819)
     user = random.choice(channel.guild.members)
