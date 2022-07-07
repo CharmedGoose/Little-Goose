@@ -57,16 +57,12 @@ starter = ["Did Anyone See The New Never Gonna Give You Up Animated Video?",
            ]
 
 
-@tasks.loop(minutes=15)
+@tasks.loop(minutes=10)
 async def spam_poop():
     channel = client.get_channel(973935616846880819)
-    user = random.choice(channel.guild.members)
-    await channel.send(f"*grabs <@{user.id}>*")
-    await channel.send(f"*eats <@{user.id}>*")
+    await channel.send("No One Wants Goose")
     channel = client.get_channel(989611026603474965)
-    user = random.choice(channel.guild.members)
-    await channel.send(f"*grabs <@{user.id}>*")
-    await channel.send(f"*eats <@{user.id}>*")
+    await channel.send("No One Wants Goose")
 
 
 @client.event
