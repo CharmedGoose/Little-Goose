@@ -60,7 +60,7 @@ starter = ["Did Anyone See The New Never Gonna Give You Up Animated Video?",
 @tasks.loop(minutes=10)
 async def spam_poop():
     channel = client.get_channel(973935616846880819)
-    await channel.send("Goose Is Sorry")
+    await channel.send("Goose Is Shutting Up")
 
 
 @client.event
