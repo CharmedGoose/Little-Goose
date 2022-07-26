@@ -34,7 +34,7 @@ class General(commands.Cog):
         snipe_message_content = message.content
         snipe_message_author = message.author
         snipe_message_id = message.id
-        await asyncio.sleep(60)
+        await asyncio.sleep(3600)
 
         if message.id == snipe_message_id:
             snipe_message_author = None
