@@ -3,13 +3,14 @@ from discord.ext import commands
 
 
 class Fun(commands.Cog):
-
     def __init__(self, client):
         self.client = client
 
-    @commands.command(name="8ball",
-                      brief="Use The 8ball",
-                      description="Use The 8ball. It will decide for you.")
+    @commands.command(
+        name="8ball",
+        brief="Use The 8ball",
+        description="Use The 8ball. It will decide for you.",
+    )
     async def _8ball(self, ctx, *args):
         if len(args) == 0:
             await ctx.send("Say Something")
@@ -34,20 +35,21 @@ class Fun(commands.Cog):
             "My reply is no.",
             "My sources say no.",
             "Outlook not so good.",
-            "Very doubtful."
-            ]
-        await ctx.send(f'{random.choice(responses)}')
+            "Very doubtful.",
+        ]
+        await ctx.send(f"{random.choice(responses)}")
 
-    @commands.command(brief="Chooses",
-                      description="Chooses one of the choices")
+    @commands.command(brief="Chooses", description="Chooses one of the choices")
     async def choose(self, ctx, *args):
         if len(args) < 2:
             await ctx.send("Give At Least Two Choices")
             return
         await ctx.send(f"{random.choice(args)}")
 
-    @commands.command(brief="Make Little Goose Say Something",
-                      description="Make Little Goose Say Something")
+    @commands.command(
+        brief="Make Little Goose Say Something",
+        description="Make Little Goose Say Something",
+    )
     async def say(self, ctx, *, args):
         await ctx.send(f"{args}")
 
