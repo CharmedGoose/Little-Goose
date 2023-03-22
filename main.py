@@ -1,4 +1,6 @@
+import asyncio
 import discord
+from datetime import datetime, timedelta
 import os
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
@@ -62,6 +64,19 @@ async def spam_poop():
     channel = client.get_channel(973935616846880819)
     await channel.send("Goose Is Shutting Up")
 
+def seconds_until_midnight():
+    now = datetime.now()
+    target = (now + timedelta(days=1)).replace(hour=4, minute=0, second=0, microsecond=0)
+    diff = (target - now).total_seconds()
+    print(f"{target} - {now} = {diff}")
+    return diff
+
+@tasks.loop(seconds=1)
+async def wake_up_call():
+    await asyncio.sleep(seconds_until_midnight())
+    message_channel = client.get_channel(1069413839344513044)
+    await message_channel.send("<@815945583008415794> Wakey Wakey")
+
 
 @client.event
 async def on_message(message):
@@ -70,7 +85,7 @@ async def on_message(message):
             "😔")
     if ("<@851537359588818944>" in message.content
             or "<@984459311587655690>" in message.content):
-        await message.channel.send("Don't hurt goose")
+        await message.channel.send("Hello")
     if (":dead:" in message.content):
         await message.channel.send(random.choice(starter))
     await client.process_commands(message)
@@ -79,32 +94,31 @@ async def on_message(message):
 @client.event
 async def on_ready():
     spam_poop.start()
+    wake_up_call.start()
 
 
 @client.command()
 async def load(ctx, extension):
-    client.load_extension(f"cogs.{extension}")
+    await client.load_extension(f"cogs.{extension}")
     await ctx.send(f"Loaded The {extension} Cog")
 
 
 @client.command()
 async def unload(ctx, extension):
-    client.unload_extension(f"cogs.{extension}")
+    await client.unload_extension(f"cogs.{extension}")
     await ctx.send(f"Unloaded The {extension} Cog")
 
 
 @client.command()
 async def reload(ctx, extension):
     message = await ctx.send(f"Reloading The {extension} Cog")
-    client.unload_extension(f"cogs.{extension}")
-    client.load_extension(f"cogs.{extension}")
+    await client.unload_extension(f"cogs.{extension}")
+    await client.load_extension(f"cogs.{extension}")
     await message.edit(content=f"Reloaded The {extension} Cog")
-
 
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py"):
         client.load_extension(f"cogs.{filename[:-3]}")
         print(f"Loaded {filename}")
-
 
 client.run(os.getenv("TOKEN"))
