@@ -20,11 +20,6 @@ class General(commands.Cog):
         print("Little Goose Successfully Logged In!")
 
     @commands.Cog.listener()
-    async def on_member_join(self, member):
-        channel = await self.client.fetch_channel("973909111471235082")
-        await channel.send(f'Welcome <@{member.id}>\nTake <#973911546226962463>')
-
-    @commands.Cog.listener()
     async def on_message_delete(self, message):
 
         global snipe_message_content
@@ -34,12 +29,6 @@ class General(commands.Cog):
         snipe_message_content = message.content
         snipe_message_author = message.author
         snipe_message_id = message.id
-        await asyncio.sleep(3600)
-
-        if message.id == snipe_message_id:
-            snipe_message_author = None
-            snipe_message_content = None
-            snipe_message_id = None
 
     @commands.command(brief="Says Little Goose's Ping",
                       description="Tells You Little Goose's Ping")
